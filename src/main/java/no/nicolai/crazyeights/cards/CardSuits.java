@@ -1,4 +1,4 @@
-package no.nicolai.crazyeights;
+package no.nicolai.crazyeights.cards;
 
 /**
  */

@@ -1,5 +1,6 @@
 package no.nicolai.crazyeights;
 
+import no.nicolai.crazyeights.cards.CardSuits;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
