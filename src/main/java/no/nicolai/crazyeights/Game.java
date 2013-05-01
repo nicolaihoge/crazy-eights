@@ -1,11 +1,20 @@
 package no.nicolai.crazyeights;
 
+import java.io.Console;
+import java.util.Scanner;
+
 /**
  * Msin game entry point
  */
 public class Game {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+    public static void main( String[] args ) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Number of players: ");
+        int numOfPlayers = scanner.nextInt();
+        System.out.println(numOfPlayers + " players");
+        for (int i = 0; i < numOfPlayers; i++) {
+            System.out.print("Name player " + i + " : ");
+            String name = scanner.next();
+        }
     }
 }
