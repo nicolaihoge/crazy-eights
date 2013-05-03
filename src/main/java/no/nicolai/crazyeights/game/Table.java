@@ -11,12 +11,13 @@ import java.util.TreeMap;
 /**
  */
 public class Table {
-    private final Deck deck = new Deck();
+    private final Deck deck;
     private final Map<String, Player> players = new TreeMap<>();
     private Rules rules;
 
-    public Table(Rules rules) {
+    public Table(Rules rules, Deck deck) {
         this.rules = rules;
+        this.deck = deck;
     }
 
     public void addPlayer(String name) {
@@ -37,5 +38,10 @@ public class Table {
                 player.dealCard(deck.remove(0));
             }
         }
+    }
+
+    public void turnOverFirstCard() {
+
+
     }
 }

@@ -2,9 +2,6 @@ package no.nicolai.crazyeights.cards;
 
 import org.junit.Test;
 
-import java.util.Iterator;
-import java.util.Set;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
@@ -19,14 +16,14 @@ public class DeckTest {
 
     @Test
     public void freshDeck() {
-        Deck deck = new Deck();
+        DefaultDeck deck = new DefaultDeck();
         assertThat(deck.size(), is(CARDS_IN_DECK));
         assertThat(deck.toString(), is(FRESH_DECK));
     }
 
     @Test
     public void shuffle() {
-        Deck deck = new Deck();
+        DefaultDeck deck = new DefaultDeck();
         deck.shuffle();
         // Not rock solid, a shuffled deck may have all cards in order,
         // and you may get the same results after two shuffles
