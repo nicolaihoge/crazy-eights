@@ -1,19 +1,17 @@
 package no.nicolai.crazyeights.cards;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Deck of cards
  */
 public class Deck implements Set<Card> {
 
-    Set<Card> cards;
+    private List<Card> cards;
 
     public Deck() {
-        cards = new HashSet<>();
+        cards = new LinkedList<>();
+        init();
     }
 
     @Override
@@ -79,5 +77,28 @@ public class Deck implements Set<Card> {
     @Override
     public void clear() {
         throw new UnsupportedOperationException();
+    }
+
+    public void shuffle() {
+        long seed = System.nanoTime();
+        Collections.shuffle(cards, new Random(seed));
+    }
+
+    private void init() {
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                cards.add(new Card(suit, rank));
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder deckPrint = new StringBuilder();
+        Iterator<Card> cardIterator = cards.iterator();
+        while (cardIterator.hasNext()) {
+            deckPrint.append(cardIterator.next());
+        }
+        return deckPrint.toString();
     }
 }
