@@ -1,15 +1,19 @@
 package no.nicolai.crazyeights.game;
 
+import no.nicolai.crazyeights.cards.Card;
+
+import java.util.List;
+
 /**
+ * A participant in the game
  */
-public class Player {
-    private String name;
+public interface Player {
+    /** Identifies the player */
+    String getName();
 
-    public Player(String name) {
-        this.name = name;
-    }
+    /** Return the hand of the player */
+    List<Card> getHand();
 
-    public String getName() {
-        return name;
-    }
+    /** Add a card to the player's hand */
+    void dealCard(Card remove);
 }

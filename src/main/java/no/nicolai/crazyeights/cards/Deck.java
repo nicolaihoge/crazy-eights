@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Deck of cards
  */
-public class Deck implements Set<Card> {
+public class Deck implements List<Card> {
 
     private List<Card> cards;
 
@@ -65,6 +65,11 @@ public class Deck implements Set<Card> {
     }
 
     @Override
+    public boolean addAll(int index, Collection<? extends Card> c) {
+        return cards.addAll(c);
+    }
+
+    @Override
     public boolean retainAll(Collection<?> c) {
         throw new UnsupportedOperationException();
     }
@@ -77,6 +82,51 @@ public class Deck implements Set<Card> {
     @Override
     public void clear() {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Card get(int index) {
+        return cards.get(index);
+    }
+
+    @Override
+    public Card set(int index, Card element) {
+        return cards.set(index, element);
+    }
+
+    @Override
+    public void add(int index, Card element) {
+        cards.add(index, element);
+    }
+
+    @Override
+    public Card remove(int index) {
+        return cards.remove(index);
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        return cards.indexOf(o);
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        return cards.lastIndexOf(o);
+    }
+
+    @Override
+    public ListIterator<Card> listIterator() {
+        return cards.listIterator();
+    }
+
+    @Override
+    public ListIterator<Card> listIterator(int index) {
+        return cards.listIterator(index);
+    }
+
+    @Override
+    public List<Card> subList(int fromIndex, int toIndex) {
+        return cards.subList(fromIndex, toIndex);
     }
 
     public void shuffle() {
@@ -95,9 +145,8 @@ public class Deck implements Set<Card> {
     @Override
     public String toString() {
         StringBuilder deckPrint = new StringBuilder();
-        Iterator<Card> cardIterator = cards.iterator();
-        while (cardIterator.hasNext()) {
-            deckPrint.append(cardIterator.next());
+        for (Card card : cards) {
+            deckPrint.append(card);
         }
         return deckPrint.toString();
     }
