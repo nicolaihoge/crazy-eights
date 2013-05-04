@@ -65,13 +65,15 @@ public class TableTest {
     }
 
     @Test
-    public void invalidFirstDiscardPileCard() {
-        Card eightOfHearts = new Card(Suit.HEARTS, Rank.EIGHT);
-        when(rules.validFirstCard(eightOfHearts)).thenReturn(false);
-        Table table = new Table(rules, deck);
-        when(deck.remove(0)).thenReturn(eightOfHearts);
+    public void invalidFirstTwoDiscardPileCard() {
+        when(rules.validFirstCard(any(Card.class))).thenReturn(false);
+        when(rules.validFirstCard(any(Card.class))).thenReturn(false);
+        when(rules.validFirstCard(any(Card.class))).thenReturn(true);
+        Deck defaultDeck = new DefaultDeck();
+        Table table = new Table(rules, defaultDeck);
         table.turnOverFirstCard();
-        verify(deck).add(anyInt(), eq(eightOfHearts));
+        assertThat(table.getDiscardPile().size(), is(1));
+        assertThat(defaultDeck.size(), is(defaultDeck.getFullSize() - 1));
     }
 
 }

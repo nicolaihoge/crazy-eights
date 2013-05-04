@@ -8,10 +8,12 @@ import java.util.*;
 public class DefaultDeck implements List<Card>, Deck {
 
     private List<Card> cards;
+    private int fullSize;
 
     public DefaultDeck() {
         cards = new LinkedList<>();
         init();
+        fullSize = cards.size();
     }
 
     @Override
@@ -150,5 +152,9 @@ public class DefaultDeck implements List<Card>, Deck {
             deckPrint.append(card);
         }
         return deckPrint.toString();
+    }
+
+    public int getFullSize() {
+        return fullSize;
     }
 }
