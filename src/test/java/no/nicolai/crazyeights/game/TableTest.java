@@ -60,6 +60,7 @@ public class TableTest {
         Table table = new Table(rules, deck);
         when(deck.remove(0)).thenReturn(sevenOfHearts);
         table.turnOverFirstCard();
+        verify(deck).remove(0);
         verifyNoMoreInteractions(deck);
     }
 
@@ -70,7 +71,7 @@ public class TableTest {
         Table table = new Table(rules, deck);
         when(deck.remove(0)).thenReturn(eightOfHearts);
         table.turnOverFirstCard();
-        verify(deck).set(anyInt(), eq(eightOfHearts));
+        verify(deck).add(anyInt(), eq(eightOfHearts));
     }
 
 }
