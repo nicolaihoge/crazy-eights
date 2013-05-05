@@ -17,7 +17,7 @@ public class DeckTest {
     @Test
     public void freshDeck() {
         DefaultDeck deck = new DefaultDeck();
-        assertThat(deck.size(), is(CARDS_IN_DECK));
+        assertThat(deck.cardsLeft(), is(CARDS_IN_DECK));
         assertThat(deck.toString(), is(FRESH_DECK));
     }
 

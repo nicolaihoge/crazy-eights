@@ -9,11 +9,7 @@ import org.mockito.MockitoAnnotations;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.Mock;
 
 /**
@@ -58,9 +54,9 @@ public class TableTest {
         Card sevenOfHearts = new Card(Suit.HEARTS, Rank.SEVEN);
         when(rules.validFirstCard(sevenOfHearts)).thenReturn(true);
         Table table = new Table(rules, deck);
-        when(deck.remove(0)).thenReturn(sevenOfHearts);
+        when(deck.nextCardFromStockPile()).thenReturn(sevenOfHearts);
         table.turnOverFirstCard();
-        verify(deck).remove(0);
+        verify(deck).nextCardFromStockPile();
         verifyNoMoreInteractions(deck);
     }
 
@@ -73,7 +69,7 @@ public class TableTest {
         Table table = new Table(rules, defaultDeck);
         table.turnOverFirstCard();
         assertThat(table.getDiscardPile().size(), is(1));
-        assertThat(defaultDeck.size(), is(defaultDeck.getFullSize() - 1));
+        assertThat(defaultDeck.cardsLeft(), is(defaultDeck.getFullSize() - 1));
     }
 
 }

@@ -1,6 +1,5 @@
 package no.nicolai.crazyeights.game;
 
-import javafx.beans.binding.Bindings;
 import no.nicolai.crazyeights.cards.Card;
 import no.nicolai.crazyeights.cards.Deck;
 import no.nicolai.crazyeights.rules.Rules;
@@ -35,7 +34,7 @@ public class Table {
         deck.shuffle();
         for (int i = 0; i < rules.numberOfCardsPrPlayer(); i++) {
             for (Player player : players.values()) {
-                player.dealCard(deck.remove(0));
+                player.dealCard(deck.nextCardFromStockPile());
             }
         }
     }
@@ -46,11 +45,11 @@ public class Table {
     public void turnOverFirstCard() {
         boolean firstCardOk = false;
         while (!firstCardOk) {
-            discardPile.add(0, deck.remove(0));
+            discardPile.add(0, deck.nextCardFromStockPile());
             if (!rules.validFirstCard(discardPile.get(0))) {
                 long seed = System.nanoTime();
-                int newPosition = new Random(seed).nextInt(deck.size());
-                deck.add(newPosition, discardPile.remove(0));
+                int newPosition = new Random(seed).nextInt(deck.cardsLeft());
+                deck.cardBackInStockPile(newPosition, discardPile.remove(0));
                 firstCardOk = false;
             } else {
                 firstCardOk = true;
