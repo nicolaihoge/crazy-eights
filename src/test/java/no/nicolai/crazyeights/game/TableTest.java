@@ -72,4 +72,9 @@ public class TableTest {
         assertThat(defaultDeck.cardsLeft(), is(defaultDeck.getFullSize() - 1));
     }
 
+    @Test
+    public void askForPlayerMove() {
+
+    }
+
 }
