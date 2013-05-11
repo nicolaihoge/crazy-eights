@@ -20,7 +20,7 @@ public class Table {
     }
 
     public void addPlayer(String name) {
-        players.put(name, new AbstractPlayer(name));
+        players.put(name, new CrazyEightsPlayer(name));
     }
 
     public Map<String, Player> getPlayers() {
@@ -59,5 +59,13 @@ public class Table {
 
     public List<Card> getDiscardPile() {
         return discardPile;
+    }
+
+    /**
+     * Plays one round around the table
+     * @return true if a winner has been decided
+     */
+    public boolean playRound() {
+        return false;  //To change body of created methods use File | Settings | File Templates.
     }
 }

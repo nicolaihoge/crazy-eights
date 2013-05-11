@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
@@ -73,8 +74,17 @@ public class TableTest {
     }
 
     @Test
-    public void askForPlayerMove() {
-
+    public void checkWinningConditionsFalse() {
+        Deck defaultDeck = new DefaultDeck();
+        Table table = new Table(rules, defaultDeck);
+        table.addPlayer(PLAYER1);
+        table.addPlayer(PLAYER2);
+        table.deal();
+        table.turnOverFirstCard();
+        boolean winner = table.playRound();
+        assertFalse(winner);
     }
+
+
 
 }

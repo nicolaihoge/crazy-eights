@@ -7,9 +7,9 @@ import java.util.List;
 
 /**
  */
-public class AbstractPlayer implements Player {
+public abstract class AbstractPlayer implements Player {
     private String name;
-    private List<Card> cards = new LinkedList<>();
+    private List<Card> hand = new LinkedList<>();
 
     public AbstractPlayer(String name) {
         this.name = name;
@@ -22,11 +22,11 @@ public class AbstractPlayer implements Player {
 
     @Override
     public List<Card> getHand() {
-        return cards;
+        return hand;
     }
 
     @Override
     public void dealCard(Card card) {
-        cards.add(card);
+        hand.add(card);
     }
 }
