@@ -6,16 +6,18 @@ import no.nicolai.crazyeights.card.Rank;
 import no.nicolai.crazyeights.card.Suit;
 import no.nicolai.crazyeights.player.Player;
 
+import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class CardController {
+public class CardController extends AbstractPlay {
 
-    public Map<String, List<Card>> playersCards = new HashMap<>();
+    private Map<String, List<Card>> playersCards = new HashMap<>();
 
-    public void deal(Player player, Card card) {
+    @Override
+    protected void dealCard(Player player, Card card) {
         if (!playersCards.containsKey(player.getName())) {
             playersCards.put(player.getName(), new LinkedList<Card>());
         }
@@ -24,7 +26,8 @@ public class CardController {
         player.deal(card);
     }
 
-    public Action askForNextAction(Player player) throws IllegalActionException {
+    @Override
+    protected Action handleNextAction(Action nextAction, Player player) throws IllegalActionException {
         Action action = player.nextAction(Suit.SPADES, Rank.FIVE);
         if (action.getType() == Action.Type.PLAY_CARD) {
             Card card = action.getCard();
