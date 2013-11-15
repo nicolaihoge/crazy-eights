@@ -4,6 +4,8 @@ import no.nicolai.crazyeights.action.Action;
 import no.nicolai.crazyeights.card.Card;
 import no.nicolai.crazyeights.player.Player;
 
+import java.io.IOException;
+
 public abstract class AbstractPlay implements Play {
 
     private AbstractPlay next;
@@ -13,17 +15,17 @@ public abstract class AbstractPlay implements Play {
     }
 
     @Override
-    public void deal(Player player, Card card) {
+    public void deal(Player player, Card card) throws IOException {
         dealCard(player, card);
         if (next != null) {
             next.deal(player, card);
         }
     }
 
-    protected abstract void dealCard(Player player, Card card);
+    protected abstract void dealCard(Player player, Card card) throws IOException;
 
     @Override
-    public Action askForNextAction(Player player) throws IllegalActionException {
+    public Action askForNextAction(Player player) throws IllegalActionException, IOException {
         Action nextAction = null;
         if (next != null) {
             nextAction = next.askForNextAction(player);
@@ -31,5 +33,5 @@ public abstract class AbstractPlay implements Play {
         return handleNextAction(nextAction, player);
     }
 
-    protected abstract Action handleNextAction(Action nextAction, Player player) throws IllegalActionException;
+    protected abstract Action handleNextAction(Action nextAction, Player player) throws IllegalActionException, IOException;
 }
