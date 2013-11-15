@@ -1,5 +1,6 @@
 package no.nicolai.crazyeights.card;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -58,5 +59,21 @@ public class Deck {
     public static final Card QUEEN_OF_DIAMONDS = new Card(Suit.DIAMONDS, Rank.QUEEN);
     public static final Card KING_OF_DIAMONDS = new Card(Suit.DIAMONDS, Rank.KING);
 
-    List<Card> cards = new LinkedList<>();
+    private List<Card> cards = new LinkedList<>();
+
+    public Deck() {
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
+                cards.add(new Card(suit, rank));
+            }
+        }
+    }
+
+    public List<Card> getCards() {
+        return cards;
+    }
+
+    public void shuffle() {
+        Collections.shuffle(cards);
+    }
 }

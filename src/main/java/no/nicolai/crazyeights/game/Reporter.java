@@ -9,6 +9,7 @@ import java.io.Writer;
 
 public class Reporter extends AbstractPlay {
 
+    public static final String LINE_SEPARATOR = System.getProperty("line.separator");
     private Writer writer;
 
     public Reporter(Writer writer) {
@@ -18,8 +19,9 @@ public class Reporter extends AbstractPlay {
     @Override
     protected void dealCard(Player player, Card card) throws IOException {
         writer.write(player.getName());
-        writer.write(" Deal ");
+        writer.write(" Dealt ");
         writer.write(card.toString());
+        writer.write(LINE_SEPARATOR);
     }
 
     @Override
@@ -30,6 +32,7 @@ public class Reporter extends AbstractPlay {
         if (nextAction.getType() == Action.Type.PLAY_CARD) {
             writer.write(" " + nextAction.getCard());
         }
+        writer.write(LINE_SEPARATOR);
         return nextAction;
     }
 }
