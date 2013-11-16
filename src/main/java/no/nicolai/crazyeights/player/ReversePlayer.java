@@ -11,32 +11,10 @@ import no.nicolai.crazyeights.game.IllegalActionException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ReversePlayer implements Player {
-
-    private String name;
-    private List<Card> cards = new LinkedList<>();
+public class ReversePlayer extends TestPlayer {
 
     public ReversePlayer(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    public List<Card> getCards() {
-        return cards;
-    }
-
-    @Override
-    public void actionByOtherPlayer(Player player, Action action) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void deal(Card card) {
-        cards.add(card);
+        super(name);
     }
 
     @Override

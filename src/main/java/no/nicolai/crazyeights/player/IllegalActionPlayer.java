@@ -7,16 +7,10 @@ import no.nicolai.crazyeights.card.Deck;
 import no.nicolai.crazyeights.card.Rank;
 import no.nicolai.crazyeights.card.Suit;
 
-public class IllegalActionPlayer implements Player {
+public class IllegalActionPlayer extends TestPlayer {
 
-    @Override
-    public String getName() {
-        return "Illegal";
-    }
-
-    @Override
-    public void deal(Card card) {
-        // I don't care, because I cheat
+    public IllegalActionPlayer() {
+        super("Illegal");
     }
 
     @Override
@@ -24,8 +18,4 @@ public class IllegalActionPlayer implements Player {
         return new PlayCardAction(Deck.ACE_OF_CLUBS);
     }
 
-    @Override
-    public void actionByOtherPlayer(Player player, Action action) {
-        // don't need to handle this
-    }
 }
