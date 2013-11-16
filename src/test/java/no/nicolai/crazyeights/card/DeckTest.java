@@ -20,6 +20,7 @@ public class DeckTest {
         Deck deck = new Deck();
         List<Card> newDeck = deck.getCards();
         deck.shuffle();
+        assertThat(deck.getCards().size(), is(52));
     }
 
 
