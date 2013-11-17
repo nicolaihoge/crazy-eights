@@ -10,8 +10,9 @@ public abstract class AbstractPlay implements Play {
 
     private AbstractPlay next;
 
-    public void setNext(AbstractPlay play) {
+    public Play setNext(AbstractPlay play) {
         next = play;
+        return next;
     }
 
     @Override

@@ -76,4 +76,8 @@ public class Deck {
     public void shuffle() {
         Collections.shuffle(cards);
     }
+
+    public Card nextCard() {
+        return cards.remove(cards.size() - 1);
+    }
 }

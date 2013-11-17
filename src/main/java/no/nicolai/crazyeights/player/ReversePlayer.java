@@ -2,16 +2,11 @@ package no.nicolai.crazyeights.player;
 
 import no.nicolai.crazyeights.action.Action;
 import no.nicolai.crazyeights.action.PlayCardAction;
-import no.nicolai.crazyeights.card.Card;
 import no.nicolai.crazyeights.card.Rank;
 import no.nicolai.crazyeights.card.Suit;
-import no.nicolai.crazyeights.game.AbstractPlay;
 import no.nicolai.crazyeights.game.IllegalActionException;
 
-import java.util.LinkedList;
-import java.util.List;
-
-public class ReversePlayer extends TestPlayer {
+public class ReversePlayer extends AbstractTestPlayer {
 
     public ReversePlayer(String name) {
         super(name);

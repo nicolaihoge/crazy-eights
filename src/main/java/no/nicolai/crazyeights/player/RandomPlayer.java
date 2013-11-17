@@ -7,10 +7,7 @@ import no.nicolai.crazyeights.card.Rank;
 import no.nicolai.crazyeights.card.Suit;
 import no.nicolai.crazyeights.game.IllegalActionException;
 
-import java.util.LinkedList;
-import java.util.List;
-
-public class RandomPlayer extends TestPlayer {
+public class RandomPlayer extends AbstractTestPlayer {
 
     public RandomPlayer(String name) {
         super(name);
