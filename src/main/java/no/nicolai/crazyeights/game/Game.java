@@ -1,5 +1,10 @@
 package no.nicolai.crazyeights.game;
 
+import no.nicolai.crazyeights.game.play.AbstractPlay;
+import no.nicolai.crazyeights.game.play.CardController;
+import no.nicolai.crazyeights.game.play.Play;
+import no.nicolai.crazyeights.game.report.Reporter;
+import no.nicolai.crazyeights.game.report.StandardOutReporter;
 import no.nicolai.crazyeights.player.Player;
 
 import java.io.BufferedWriter;
@@ -15,7 +20,7 @@ public class Game {
 
     public Game(List<Player> players) {
         this.players = players;
-        AbstractPlay firstPlay = new Reporter(new BufferedWriter(new OutputStreamWriter(System.out)));
+        AbstractPlay firstPlay = new StandardOutReporter();
         AbstractPlay secondPlay = new CardController();
         firstPlay.setNext(secondPlay);
         play = firstPlay;

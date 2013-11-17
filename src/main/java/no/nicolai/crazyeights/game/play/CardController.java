@@ -1,12 +1,13 @@
-package no.nicolai.crazyeights.game;
+package no.nicolai.crazyeights.game.play;
 
 import no.nicolai.crazyeights.action.Action;
 import no.nicolai.crazyeights.card.Card;
 import no.nicolai.crazyeights.card.Rank;
 import no.nicolai.crazyeights.card.Suit;
+import no.nicolai.crazyeights.game.IllegalActionException;
+import no.nicolai.crazyeights.game.play.AbstractPlay;
 import no.nicolai.crazyeights.player.Player;
 
-import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;

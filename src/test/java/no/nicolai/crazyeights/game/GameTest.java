@@ -54,5 +54,10 @@ public class GameTest {
         assertThat(allDealtCards.size(), is(Game.NUM_OF_CARDS * gamePlayers.size()));
     }
 
+    @Test
+    public void playWithTwoCardsUntilWinner() {
+
+    }
+
 
 }

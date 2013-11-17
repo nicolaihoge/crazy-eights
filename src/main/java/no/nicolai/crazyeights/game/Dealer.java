@@ -1,6 +1,7 @@
 package no.nicolai.crazyeights.game;
 
 import no.nicolai.crazyeights.card.Deck;
+import no.nicolai.crazyeights.game.play.Play;
 import no.nicolai.crazyeights.player.Player;
 
 import java.io.IOException;

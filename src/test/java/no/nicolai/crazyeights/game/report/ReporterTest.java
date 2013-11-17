@@ -1,14 +1,15 @@
-package no.nicolai.crazyeights.game;
+package no.nicolai.crazyeights.game.report;
 
 import no.nicolai.crazyeights.action.Action;
 import no.nicolai.crazyeights.action.PlayCardAction;
 import no.nicolai.crazyeights.card.Deck;
+import no.nicolai.crazyeights.game.IllegalActionException;
+import no.nicolai.crazyeights.game.report.Reporter;
 import no.nicolai.crazyeights.player.Player;
 import no.nicolai.crazyeights.player.ReversePlayer;
 import org.junit.Test;
 
 import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.StringWriter;
@@ -43,8 +44,7 @@ public class ReporterTest {
 
     @Test //for looking at output
     public void file() throws IOException, IllegalActionException {
-        Writer writer = new BufferedWriter(new OutputStreamWriter(System.out));
-        Reporter reporter = new Reporter(writer);
+        Reporter reporter = new StandardOutReporter();
         Player player = new ReversePlayer(PLAYER_NAME);
         reporter.dealCard(player, Deck.EIGHT_OF_CLUBS);
         Action action = new PlayCardAction(Deck.EIGHT_OF_CLUBS);

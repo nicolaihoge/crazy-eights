@@ -1,9 +1,10 @@
-package no.nicolai.crazyeights.game;
+package no.nicolai.crazyeights.game.play;
 
 import no.nicolai.crazyeights.card.Card;
 import no.nicolai.crazyeights.card.Deck;
+import no.nicolai.crazyeights.game.IllegalActionException;
+import no.nicolai.crazyeights.game.play.CardController;
 import no.nicolai.crazyeights.player.IllegalActionPlayer;
-import no.nicolai.crazyeights.player.Player;
 import no.nicolai.crazyeights.player.ReversePlayer;
 import org.junit.Test;
 
