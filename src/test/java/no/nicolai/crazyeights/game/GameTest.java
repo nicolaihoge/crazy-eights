@@ -37,7 +37,7 @@ public class GameTest {
         players.add(playerB);
         Player playerC = new IllegalActionPlayer();
         players.add(playerC);
-        game = new Game(players, NUM_OF_CARDS);
+        game = new Game(players);
     }
 
     @Test
@@ -60,21 +60,20 @@ public class GameTest {
     }
 
     @Test
-    public void playWithTwoCardsUntilWinner() {
+    public void playWithTwoCardsUntilWinner() throws IllegalActionException, IOException {
         Player playerA = new ReversePlayer("PlayerA");
         Player playerB = new ReversePlayer("PlayerB");
         List<Player> players = new LinkedList<>();
         players.add(playerA);
         players.add(playerB);
-        Dealer dealerWithFiveCards = new Dealer(players, StandardPlay.create(), 2);
         Deck deckWithFiveCards = new Deck(
                 Deck.ACE_OF_CLUBS,
                 Deck.TWO_OF_CLUBS,
                 Deck.THREE_OF_CLUBS,
                 Deck.FOUR_OF_CLUBS,
                 Deck.FIVE_OF_CLUBS);
-        dealerWithFiveCards.setDeck(deckWithFiveCards);
-        Game shortGame = new Game(players, StandardPlay.create(), dealerWithFiveCards);
+        Game shortGame = new Game(players, StandardPlay.create(), 2, deckWithFiveCards);
+        shortGame.deal();
         Result result = shortGame.play();
         assertThat(result.getWinner(), is(playerA));
     }

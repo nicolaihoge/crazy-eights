@@ -1,5 +1,6 @@
 package no.nicolai.crazyeights.game;
 
+import no.nicolai.crazyeights.card.Deck;
 import no.nicolai.crazyeights.game.deal.Dealer;
 import no.nicolai.crazyeights.game.play.Play;
 import no.nicolai.crazyeights.game.play.StandardPlay;
@@ -15,17 +16,16 @@ public class Game {
     private final Play play;
     private final Dealer dealer;
 
-    public Game(List<Player> players, int numOfCards) {
+    public Game(List<Player> players) {
         this.players = players;
-        numOfCards = 5;
-        play = StandardPlay.create();
-        dealer = new Dealer(players, play, numOfCards);
+        this.play = StandardPlay.create();
+        this.dealer = new Dealer(players, play, 5);
     }
 
-    public Game(List<Player> players, Play play, Dealer dealer) {
+    public Game(List<Player> players, Play play, int numOfCards, Deck deck) {
         this.players = players;
         this.play = play;
-        this.dealer = dealer;
+        this.dealer = new Dealer(players, play, numOfCards, deck);
     }
 
 
@@ -37,8 +37,13 @@ public class Game {
         dealer.deal();
     }
 
-    public Result play() {
-
-        return null;
+    public Result play() throws IllegalActionException, IOException {
+        Player winner = null;
+        while (winner == null) {
+            for (Player player: players) {
+                play.askForNextAction(player);
+            }
+        }
+        return new Result(winner);
     }
 }
