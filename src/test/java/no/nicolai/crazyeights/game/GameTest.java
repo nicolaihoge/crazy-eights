@@ -1,6 +1,10 @@
 package no.nicolai.crazyeights.game;
 
 import no.nicolai.crazyeights.card.Card;
+import no.nicolai.crazyeights.card.Deck;
+import no.nicolai.crazyeights.game.deal.Dealer;
+import no.nicolai.crazyeights.game.play.StandardPlay;
+import no.nicolai.crazyeights.game.report.Result;
 import no.nicolai.crazyeights.player.IllegalActionPlayer;
 import no.nicolai.crazyeights.player.Player;
 import no.nicolai.crazyeights.player.RandomPlayer;import no.nicolai.crazyeights.player.ReversePlayer;
@@ -20,6 +24,7 @@ import static org.junit.Assert.assertThat;
 
 public class GameTest {
 
+    public static final int NUM_OF_CARDS = 5;
     private Game game;
     private List<Player> players;
 
@@ -32,7 +37,7 @@ public class GameTest {
         players.add(playerB);
         Player playerC = new IllegalActionPlayer();
         players.add(playerC);
-        game = new Game(players);
+        game = new Game(players, NUM_OF_CARDS);
     }
 
     @Test
@@ -48,15 +53,30 @@ public class GameTest {
         List<Player> gamePlayers = game.getPlayers();
         for (Player player : gamePlayers) {
             TestPlayer testPlayer = (TestPlayer) player;
-            assertThat(testPlayer.getCards().size(), is(Game.NUM_OF_CARDS));
+            assertThat(testPlayer.getCards().size(), is(NUM_OF_CARDS));
             allDealtCards.addAll(testPlayer.getCards());
         }
-        assertThat(allDealtCards.size(), is(Game.NUM_OF_CARDS * gamePlayers.size()));
+        assertThat(allDealtCards.size(), is(NUM_OF_CARDS * gamePlayers.size()));
     }
 
     @Test
     public void playWithTwoCardsUntilWinner() {
-
+        Player playerA = new ReversePlayer("PlayerA");
+        Player playerB = new ReversePlayer("PlayerB");
+        List<Player> players = new LinkedList<>();
+        players.add(playerA);
+        players.add(playerB);
+        Dealer dealerWithFiveCards = new Dealer(players, StandardPlay.create(), 2);
+        Deck deckWithFiveCards = new Deck(
+                Deck.ACE_OF_CLUBS,
+                Deck.TWO_OF_CLUBS,
+                Deck.THREE_OF_CLUBS,
+                Deck.FOUR_OF_CLUBS,
+                Deck.FIVE_OF_CLUBS);
+        dealerWithFiveCards.setDeck(deckWithFiveCards);
+        Game shortGame = new Game(players, StandardPlay.create(), dealerWithFiveCards);
+        Result result = shortGame.play();
+        assertThat(result.getWinner(), is(playerA));
     }
 
 

@@ -69,6 +69,10 @@ public class Deck {
         }
     }
 
+    public Deck(Card ... cards) {
+        Collections.addAll(this.cards, cards);
+    }
+
     public List<Card> getCards() {
         return cards;
     }

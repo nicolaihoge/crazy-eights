@@ -1,29 +1,31 @@
 package no.nicolai.crazyeights.game;
 
-import no.nicolai.crazyeights.game.play.AbstractPlay;
-import no.nicolai.crazyeights.game.play.CardController;
+import no.nicolai.crazyeights.game.deal.Dealer;
 import no.nicolai.crazyeights.game.play.Play;
-import no.nicolai.crazyeights.game.report.Reporter;
-import no.nicolai.crazyeights.game.report.StandardOutReporter;
+import no.nicolai.crazyeights.game.play.StandardPlay;
+import no.nicolai.crazyeights.game.report.Result;
 import no.nicolai.crazyeights.player.Player;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.List;
 
 public class Game {
 
-    public static final int NUM_OF_CARDS = 5;
     private final List<Player> players;
     private final Play play;
+    private final Dealer dealer;
 
-    public Game(List<Player> players) {
+    public Game(List<Player> players, int numOfCards) {
         this.players = players;
-        AbstractPlay firstPlay = new StandardOutReporter();
-        AbstractPlay secondPlay = new CardController();
-        firstPlay.setNext(secondPlay);
-        play = firstPlay;
+        numOfCards = 5;
+        play = StandardPlay.create();
+        dealer = new Dealer(players, play, numOfCards);
+    }
+
+    public Game(List<Player> players, Play play, Dealer dealer) {
+        this.players = players;
+        this.play = play;
+        this.dealer = dealer;
     }
 
 
@@ -32,7 +34,11 @@ public class Game {
     }
 
     public void deal() throws IOException {
-        Dealer dealer = new Dealer(players, play);
         dealer.deal();
+    }
+
+    public Result play() {
+
+        return null;
     }
 }
