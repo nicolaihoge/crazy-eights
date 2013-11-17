@@ -22,6 +22,7 @@ public class Reporter extends AbstractPlay {
         writer.write(" Dealt ");
         writer.write(card.toString());
         writer.write(LINE_SEPARATOR);
+        writer.flush();
     }
 
     @Override
@@ -33,6 +34,7 @@ public class Reporter extends AbstractPlay {
             writer.write(" " + nextAction.getCard());
         }
         writer.write(LINE_SEPARATOR);
+        writer.flush();
         return nextAction;
     }
 }

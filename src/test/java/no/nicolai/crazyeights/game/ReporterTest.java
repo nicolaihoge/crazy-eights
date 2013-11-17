@@ -41,7 +41,7 @@ public class ReporterTest {
         assertThat(writer.toString(), is(expectedOutput));
     }
 
-    //@Test for looking at output
+    @Test //for looking at output
     public void file() throws IOException, IllegalActionException {
         Writer writer = new BufferedWriter(new OutputStreamWriter(System.out));
         Reporter reporter = new Reporter(writer);
@@ -49,6 +49,5 @@ public class ReporterTest {
         reporter.dealCard(player, Deck.EIGHT_OF_CLUBS);
         Action action = new PlayCardAction(Deck.EIGHT_OF_CLUBS);
         reporter.handleNextAction(action, player);
-        writer.flush();
     }
 }

@@ -15,7 +15,10 @@ public class Game {
 
     public Game(List<Player> players) {
         this.players = players;
-        play = new Reporter(new BufferedWriter(new OutputStreamWriter(System.out))).setNext(new CardController());
+        AbstractPlay firstPlay = new Reporter(new BufferedWriter(new OutputStreamWriter(System.out)));
+        AbstractPlay secondPlay = new CardController();
+        firstPlay.setNext(secondPlay);
+        play = firstPlay;
     }
 
 
